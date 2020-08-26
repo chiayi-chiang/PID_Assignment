@@ -12,6 +12,8 @@ SET time_zone = "+00:00";
 
 --
 -- 資料庫： `shopcart`
+create database shopcart character set utf8;
+use shopcart;
 --
 
 -- --------------------------------------------------------
