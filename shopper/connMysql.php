@@ -4,7 +4,7 @@
 $dbhost = '127.0.0.1';
 $dbuser = 'root';
 $dbpass = 'root';
-$dbname = 'shopcart';
+$dbname = 'clothes';
 //connect to mysql
 $con = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname, 8889);
 	if (!$con){

@@ -17,13 +17,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>留言板 - 編輯留言</title>
+	<title>編輯</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="main.css">
 </head>
 <body>
 	<div class="container">
-		<h1>編輯留言</h1>
+		<h1>編輯</h1>
 		<span>
 			<a href="index.php">首頁</a>
 		</span>

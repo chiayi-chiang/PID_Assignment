@@ -22,8 +22,8 @@
 		//$title = $_POST["title"];
 		//$content = $_POST["content"];
 		$sql = "INSERT INTO `mes` (uid)
-		VALUES ('$uid')";
-		global $con;
+			VALUES ('$uid')";
+			global $con;
 		$result = mysqli_query($con , $sql) or die('MySQL query error');
 		echo "<script type='text/javascript'>";
 		echo "alert('新增留言成功');";

@@ -625,7 +625,7 @@ section.our_client .row{
 
 /* Block 
 ----------------------------------------------------------------------------- */
-.block {
+.block { 
 	text-align: center;
 	padding: 7px;
 	border: 1px solid #ddd;
@@ -634,7 +634,7 @@ section.our_client .row{
 	-webkit-box-shadow: 0 0 3px 0 #ccc;
 	box-shadow: 0 0 3px 0 #ccc;
 	margin-bottom: 20px;
-}
+} 
 .small-product {
 	margin: 0;
 	padding: 0;

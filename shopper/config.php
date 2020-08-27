@@ -40,7 +40,7 @@
 	// 如果沒有一樣的話，就把他填的資料存進資料庫 member 表裡註冊成功後要給用戶一個 session，$_SESSION[“id”] 設成使用者的 id
 	function signup(){
 		$sql="SELECT * FROM `member`
-				WHERE username = '$_POST[username]'";
+				WHERE unumber = '$_POST[username]'";
 		global $con;
 	    $result = mysqli_query($con , $sql) or die('MySQL query error');
 	    $row = mysqli_fetch_array($result);
