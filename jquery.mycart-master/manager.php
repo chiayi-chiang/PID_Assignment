@@ -32,7 +32,8 @@ foreach($_POST as $item) {
 <div class="container">
     <h2 class="float-left"><?= $sUserName."管理者專用"?></h2>
         <a href="index.php" class="btn btn-outline-info btn-md float-right">回首頁</a>
-        <a href="addproduct.php" class="btn btn-outline-info btn-md float-right">New</a>
+        <a href="addproduct.php" class="btn btn-outline-info btn-md float-right">新增品項</a>
+        <a href="memcheck.php" class="btn btn-outline-info btn-md float-right">會員冊</a>
     
   <table class="table table-striped">
     <thead>
@@ -51,7 +52,7 @@ foreach($_POST as $item) {
         <td><?= $row["UnitPrice"] ?></td>
         <td>
             <span class="float-right">
-                <a href="./detail.php?id=<?= $row["pID"] ?>" class="btn btn-outline-danger btn-sm">detail</a>
+                <a href="./detail.php?id=<?= $row["pID"] ?>" class="btn btn-outline-success  btn-sm">detail</a>
                 |
                 <a href="./editForm.php?id=<?= $row["pID"] ?>" class="btn btn-outline-success btn-sm">Edit</a>
                 | 

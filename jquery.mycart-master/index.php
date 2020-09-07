@@ -21,9 +21,15 @@
       echo "<script type='text/javascript'>alert('登出成功');location.href='index.php';</script>";//go back to homepage
       exit();
     }
-    if(isset($_POST[""])){
+    if(isset($_POST["addtocart"])){
+      
   
     }
+
+    // session_start();
+    // $cart =&$_SESSION['cart'];
+    // if(!is_object($cart)) $cart=new wfCart();
+    // $cart->add_$item
 
 ?>
     
@@ -50,7 +56,7 @@
 </head>
 
 <body class="container">
-
+<form class="singup-form" id="form2" name="form2" method="post" >
   <div class="page-header">
     <h1><td align="center" bgcolor="#CCCCCC" ><?="Welcome!". $sUserName?> </td><!--登入成功後會出現使用者帳號-->
       <button>
@@ -74,14 +80,14 @@
         <br>
         <?= $row["pName"]?> - <strong><?= $row["UnitPrice"]?></strong>
         <br>
-        <button class="btn btn-danger my-cart-btn" data-id="<?= $row["pID"]?>" data-name="<?= $row["pName"]?>" data-price="<?= $row["UnitPrice"]?>" data-quantity="1" data-image="<?= $row["picture"]?>">Add to Cart</button>
+        <button class="btn btn-danger my-cart-btn" name="addtocart" data-id="<?= $row["pID"]?>" data-name="<?= $row["pName"]?>" data-price="<?= $row["UnitPrice"]?>" data-quantity="1" data-image="<?= $row["picture"]?>">Add to Cart</button>
         <!-- <a href="#" class="btn btn-info">Details</a> -->
       </div>
     <?php } ?>
   </div>
+</form>
 
-
-  <script src="js/jquery-2.2.3.min.js"></script>
+   <!-- <script src="js/jquery-2.2.3.min.js"></script>
   <script type='text/javascript' src="js/bootstrap.min.js"></script>
   <script type='text/javascript' src="js/jquery.mycart.js"></script>
   <script type="text/javascript">
@@ -161,7 +167,7 @@
 
     
   });
-  </script>
+  </script>  -->
 
 </body>
 
