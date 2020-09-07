@@ -1,12 +1,9 @@
 <?php 
     require("database.php");
-    $sqlStatement ="
-    select m.uID,`unumber`,`uPasswd`,`uName`,`uPhone`,`manager`,`canuse`,o.oID,`orderDate`,`stortDate`,p.pID,`pName`,p.UnitPrice,`picture`
-    FROM `product` p,`order` o,`member` m,`details` d
-    where m.uID = o.uID
-    and o.oID = d.oID
-    AND d.pID = p.pID";
-    $result = mysqli_query($con, $sqlStatement);
+    $sqlproduct ="
+    select *
+    FROM product";
+    $product = mysqli_query($con, $sqlproduct);
   
     session_start();
     if (isset($_SESSION["txtUserName"])){//檢查是否有資料
@@ -24,11 +21,15 @@
       echo "<script type='text/javascript'>alert('登出成功');location.href='index.php';</script>";//go back to homepage
       exit();
     }
-    
+    if(isset($_POST[""])){
+  
+    }
+
+?>
     
     
 
-?>
+
 <html>
 
 <head>
@@ -56,7 +57,7 @@
         <?php if ($sUserName == "Guest"){?>
           <td align="center" valign="baseline"><a href="login.php">登入</a>｜<a href="singup.php">註冊</a></td><!--yes-->
         <?php }else{?>
-          <td align="center" valign="baseline"><a href="index.php?logout=1">登出</a>|<a href="manager.php">管理員</a></td><!--no-->
+          <td align="center" valign="baseline"><a href="index.php?logout=1">登出</a>|<a href="decidemana.php">管理員</a></td><!--no-->
         <?php }?>
       </button>
       
@@ -66,54 +67,17 @@
     </h1>
   </div>
 
-  <button type="addNewProduct" name="addNewProduct" id="addNewProduct">Add New Product</button>
-
   <div class="row">
-    <div class="col-md-3 text-center">
-      <img src="images/img_1.png" width="150px" height="150px">
-      <br>
-      product 1 - <strong>$10</strong>
-      <br>
-      <button class="btn btn-danger my-cart-btn" data-id="1" data-name="product 1" data-summary="summary 1" data-price="10" data-quantity="1" data-image="images/img_1.png">Add to Cart</button>
-      <a href="#" class="btn btn-info">Details</a>
-    </div>
-
-    <div class="col-md-3 text-center">
-      <img src="images/img_2.png" width="150px" height="150px">
-      <br>
-      product 2 - <strong>$20</strong>
-      <br>
-      <button class="btn btn-danger my-cart-btn" data-id="2" data-name="product 2" data-summary="summary 2" data-price="20" data-quantity="1" data-image="images/img_2.png">Add to Cart</button>
-      <a href="#" class="btn btn-info">Details</a>
-    </div>
-
-    <div class="col-md-3 text-center">
-      <img src="images/img_3.png" width="150px" height="150px">
-      <br>
-      product 3 - <strong>$30</strong>
-      <br>
-      <button class="btn btn-danger my-cart-btn" data-id="3" data-name="product 3" data-summary="summary 3" data-price="30" data-quantity="1" data-image="images/img_3.png">Add to Cart</button>
-      <a href="#" class="btn btn-info">Details</a>
-    </div>
-
-    <div class="col-md-3 text-center">
-      <img src="images/img_4.png" width="150px" height="150px">
-      <br>
-      product 4 - <strong>$40</strong>
-      <br>
-      <button class="btn btn-danger my-cart-btn" data-id="4" data-name="product 4" data-summary="summary 4" data-price="40" data-quantity="1" data-image="images/img_4.png">Add to Cart</button>
-      <a href="#" class="btn btn-info">Details</a>
-    </div>
-
-    <div class="col-md-3 text-center">
-      <img src="images/img_5.png" width="150px" height="150px">
-      <br>
-      product 5 - <strong>$50</strong>
-      <br>
-      <button class="btn btn-danger my-cart-btn" data-id="5" data-name="product 5" data-summary="summary 5" data-price="50" data-quantity="1" data-image="images/img_5.png">Add to Cart</button>
-      <a href="#" class="btn btn-info">Details</a>
-    </div>
-
+    <?php while ( $row = mysqli_fetch_assoc($product) ) { ?>
+      <div class="col-md-3 text-center">
+        <img src="images/<?= $row["picture"]?>" width="150px" height="150px">
+        <br>
+        <?= $row["pName"]?> - <strong><?= $row["UnitPrice"]?></strong>
+        <br>
+        <button class="btn btn-danger my-cart-btn" data-id="<?= $row["pID"]?>" data-name="<?= $row["pName"]?>" data-price="<?= $row["UnitPrice"]?>" data-quantity="1" data-image="<?= $row["picture"]?>">Add to Cart</button>
+        <!-- <a href="#" class="btn btn-info">Details</a> -->
+      </div>
+    <?php } ?>
   </div>
 
 
@@ -146,11 +110,8 @@
       affixCartIcon: true,
       showCheckoutModal: true,
       numberOfDecimals: 2,
-      cartItems: [
-        {id: 1, name: 'product 1', summary: 'summary 1', price: 10, quantity: 1, image: 'images/img_1.png'},
-        {id: 2, name: 'product 2', summary: 'summary 2', price: 20, quantity: 2, image: 'images/img_2.png'},
-        {id: 3, name: 'product 3', summary: 'summary 3', price: 30, quantity: 1, image: 'images/img_3.png'}
-      ],
+      cartItems: [ ],
+      
       clickOnAddToCart: function($addTocart){
         goToCartIcon($addTocart);
       },
@@ -162,23 +123,43 @@
       },
       checkoutCart: function(products, totalPrice, totalQuantity) {
         var checkoutString = "Total Price: " + totalPrice + "\nTotal Quantity: " + totalQuantity;
-        checkoutString =checkoutString+ "\n\n id \t name \t summary \t price \t quantity \t image path";
+        checkoutString =checkoutString+ "\n\n id \t name \t price \t quantity \t image path";
+        let myObj = [];
         $.each(products, function(){
-          checkoutString += ("\n " + this.id + " \t " + this.name + " \t " + this.summary + " \t " + this.price + " \t " + this.quantity + " \t " + this.image);
+        //   $.each(myArray, function (i, value) {
+            myObj.push({id: this.id, name: this.name, price: this.price, quantity: this.quantity, image: this.image});
+        // });  
+            
+          // checkoutString += ("\n " + this.id + " \t " + this.name + " \t "  + this.price + " \t " + this.quantity + " \t " + this.image);
         });
-        alert(checkoutString)
-        console.log("checking out", products, totalPrice, totalQuantity);
-      },
+        for($i=0;$i<)
+        console.log(myObj[1]);
+        $.ajax({
+          type: 'POST',
+          url: 'detail.php',
+          data: {myObj},
+          success: function(e){
+            alert(e);
+          },
+          error: function(){
+            alert('error');
+          }
+        
+        }); 
+        
+        
+        
+          
+          // console.log("checking out", products, totalPrice, totalQuantity);
+        },
+      
       // getDiscountPrice: function(products, totalPrice, totalQuantity) {
       //   console.log("calculating discount", products, totalPrice, totalQuantity);
       //   return totalPrice * 0.5;
       // }
     });
 
-    $("#addNewProduct").click(function(event) {
-      var currentElementNo = $(".row").children().length + 1;
-      $(".row").append('<div class="col-md-3 text-center"><img src="images/img_empty.png" width="150px" height="150px"><br>product ' + currentElementNo + ' - <strong>$' + currentElementNo + '</strong><br><button class="btn btn-danger my-cart-btn" data-id="' + currentElementNo + '" data-name="product ' + currentElementNo + '" data-summary="summary ' + currentElementNo + '" data-price="' + currentElementNo + '" data-quantity="1" data-image="images/img_empty.png">Add to Cart</button><a href="#" class="btn btn-info">Details</a></div>')
-    });
+    
   });
   </script>
 

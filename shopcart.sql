@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost:8889
--- 產生時間： 2020 年 09 月 06 日 09:13
+-- 產生時間： 2020 年 09 月 07 日 10:48
 -- 伺服器版本： 5.7.26
 -- PHP 版本： 7.4.2
 
@@ -23,9 +23,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `details` (
   `oID` int(11) UNSIGNED NOT NULL,
   `pID` int(11) UNSIGNED NOT NULL,
-  `quantity` smallint(6) NOT NULL DEFAULT '0',
-  `UnitPrice` decimal(19,4) NOT NULL DEFAULT '0.0000'
+  `quantity` smallint(20) NOT NULL DEFAULT '0',
+  `UnitPrice` decimal(19,0) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `details`
+--
+
+INSERT INTO `details` (`oID`, `pID`, `quantity`, `UnitPrice`) VALUES
+(1, 4, 1, '800'),
+(1, 2, 2, '600');
 
 -- --------------------------------------------------------
 
@@ -64,6 +72,13 @@ CREATE TABLE `order` (
   `stortDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- 傾印資料表的資料 `order`
+--
+
+INSERT INTO `order` (`oID`, `uID`, `orderDate`, `stortDate`) VALUES
+(1, 2, '2020-09-07 16:19:27', '2020-09-14 16:19:27');
+
 -- --------------------------------------------------------
 
 --
@@ -73,9 +88,20 @@ CREATE TABLE `order` (
 CREATE TABLE `product` (
   `pID` int(11) UNSIGNED NOT NULL,
   `pName` varchar(20) NOT NULL DEFAULT '',
-  `UnitPrice` decimal(19,4) NOT NULL DEFAULT '0.0000',
+  `UnitPrice` decimal(19,0) NOT NULL DEFAULT '0',
   `picture` varchar(50) NOT NULL DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 傾印資料表的資料 `product`
+--
+
+INSERT INTO `product` (`pID`, `pName`, `UnitPrice`, `picture`) VALUES
+(1, '果汁機', '1700', 'img_1.png'),
+(2, '遙控器', '600', 'img_2.png'),
+(4, '相機', '600', 'img_3.png'),
+(5, '熨斗', '800', 'img_4.png'),
+(6, '洗衣機', '1200', 'img_5.png');
 
 --
 -- 已傾印資料表的索引
@@ -121,13 +147,13 @@ ALTER TABLE `member`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `order`
 --
 ALTER TABLE `order`
-  MODIFY `oID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `oID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `product`
 --
 ALTER TABLE `product`
-  MODIFY `pID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 已傾印資料表的限制式

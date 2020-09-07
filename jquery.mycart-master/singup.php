@@ -54,7 +54,7 @@ if (isset($_POST["btnOK"]))//read 表單，去看$_POST裏頭有沒有一個較b
         z-index: 1;
         background: #FFFFFF;
         max-width: 360px;
-        margin: 0 auto 100px;
+        margin: 100px auto ;
         padding: 45px;
         text-align: center;
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -89,7 +89,7 @@ if (isset($_POST["btnOK"]))//read 表單，去看$_POST裏頭有沒有一個較b
 <body>
     <div class="singup-page" >
     <div class="form">
-      <form class="singup-form" id="form2" name="form2" method="post" action="singup.php">
+      <form class="singup-form" id="form2" name="form2" method="post">
         <tr>
             <td colspan="2" align="center" bgcolor="#CCCCCC"><font color="#00000">會員系統 - 註冊</font></td>
         </tr>

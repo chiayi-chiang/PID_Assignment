@@ -15,6 +15,7 @@ if (isset($_POST["btnOK"]))//read 表單，去看$_POST裏頭有沒有一個較b
     if($row["canuse"]==1){
       session_start();
       $_SESSION["txtUserName"] = $sUserName;
+      $_SESSION["txtUserNumber"] = $sUserNumber;
       echo "<script type='text/javascript'> alert('登入成功');location.href='index.php';</script>";
     }
     echo "<script type='text/javascript'> alert('已被列管黑名單');location.href='index.php';</script>";
@@ -24,6 +25,7 @@ if (isset($_POST["btnOK"]))//read 表單，去看$_POST裏頭有沒有一個較b
   }
 	
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -50,7 +52,7 @@ if (isset($_POST["btnOK"]))//read 表單，去看$_POST裏頭有沒有一個較b
         z-index: 1;
         background: #FFFFFF;
         max-width: 360px;
-        margin: 0 auto 100px;
+        margin: 100px auto ;
         padding: 45px;
         text-align: center;
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -86,7 +88,7 @@ if (isset($_POST["btnOK"]))//read 表單，去看$_POST裏頭有沒有一個較b
 <body>
     <div class="login-page" >
     <div class="form">
-      <form class="login-form" id="form1" name="form1" method="post" action="login.php">
+      <form class="login-form" id="form1" name="form1" method="post">
         <tr>
             <td colspan="2" align="center" bgcolor="#CCCCCC"><font color="#00000">會員系統 - 登入<font></td>
         </tr>
