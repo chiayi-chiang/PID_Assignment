@@ -15,12 +15,16 @@ $uID=$IDrow["uID"];
 //將sql資料顯示在畫面上
 
 $sqldetail =
-"select p.pID,`pName`,o.uID,`uName`,`uPhone`,`orderDate`,`storeDate`,`quantity`,(quantity*p.UnitPrice) as total,
+"select o.uID,`pName`,`orderDate`,`storeDate`,`quantity`,(quantity*p.UnitPrice) as total
 FROM `member` m,`order` o,`product` p,`details` d 
-where m.uID=o.uID and o.oID = d.oID and p.pID = d.pID AND o.uID='$uID'
+where m.uID=o.uID 
+and o.oID = d.oID 
+and p.pID = d.pID 
+AND o.uID='1'
 ";
 
 $detail=mysqli_query($con, $sqldetail);
+
 
 
 
