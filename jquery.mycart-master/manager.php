@@ -1,11 +1,19 @@
 <?php
 require("database.php");
 
+session_start();
+if (isset($_SESSION["txtUserName" ]))//檢查是否沒有一個txtUserName的陣列資料
+{
+    $sUserName = $_SESSION["txtUserName"];//有
+    $sUserNumber=$_SESSION["txtUserNumber"];
+}
+
 if (isset($_POST["btnHome"]))//read 表單
 {
 	header("Location: index.php");//go back to homepage
 	exit();
 }
+
 
 $sqlproduct ="
 SELECT * FROM `product`";

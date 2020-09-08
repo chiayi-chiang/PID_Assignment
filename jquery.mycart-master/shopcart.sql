@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost:8889
--- 產生時間： 2020 年 09 月 07 日 10:48
+-- 產生時間： 2020 年 09 月 08 日 01:03
 -- 伺服器版本： 5.7.26
 -- PHP 版本： 7.4.2
 
@@ -69,14 +69,14 @@ CREATE TABLE `order` (
   `oID` int(11) UNSIGNED NOT NULL,
   `uID` int(11) UNSIGNED NOT NULL,
   `orderDate` datetime DEFAULT NULL,
-  `stortDate` datetime DEFAULT NULL
+  `storeDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 傾印資料表的資料 `order`
 --
 
-INSERT INTO `order` (`oID`, `uID`, `orderDate`, `stortDate`) VALUES
+INSERT INTO `order` (`oID`, `uID`, `orderDate`, `storeDate`) VALUES
 (1, 2, '2020-09-07 16:19:27', '2020-09-14 16:19:27');
 
 -- --------------------------------------------------------

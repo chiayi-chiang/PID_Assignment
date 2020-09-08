@@ -22,6 +22,7 @@ if (isset($_POST["btnOK"]))//read 表單，去看$_POST裏頭有沒有一個較b
 
     session_start();
     $_SESSION["txtUserName"] = $sUserName;
+    $_SESSION["txtUserNumber"] = $sUserNumber;
     echo "<script type='text/javascript'> alert('註冊成功');location.href='index.php';</script>";
   }
     
