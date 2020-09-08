@@ -21,10 +21,7 @@
       echo "<script type='text/javascript'>alert('登出成功');location.href='index.php';</script>";//go back to homepage
       exit();
     }
-    if(isset($_POST["addtocart"])){
-      
-  
-    }
+    
 
 
 ?>
@@ -63,9 +60,7 @@
         <?php }?>
       </button>
       
-      <div style="float: right; cursor: pointer;">
-        <span class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
-      </div>
+      
     </h1>
   </div>
 
