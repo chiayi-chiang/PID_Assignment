@@ -1,7 +1,15 @@
 <?php
 require("database.php");
 
+if (!isset($_GET["id"])) {
+    die("id not found.");
+}
+
 $id = $_GET["id"];
+
+if (! is_numeric ( $id )){
+    die ( "id not a number." );
+}
 
 $sqlpId = 
   "select * from product where pId = $id";
@@ -79,19 +87,19 @@ if (isset($_POST["btnOK"])) {
     <h2>產品修改</h2>
       <form class="singup-form" id="form2" name="form2" method="post" >
         <div class="form-group row">
-          <label for="firstName" class="col-4 col-form-label">圖片名稱:</label> 
+          <label for="firstName" class="col-4 col-form-label">First Name:</label> 
           <div class="col-8">
             <input type="text" name="txtpicture" id="txtpicture" value="<?= $row["picture"] ?>" class="form-control" />
           </div>
         </div>
         <div class="form-group row">
-          <label for="firstName" class="col-4 col-form-label">產品名稱:</label> 
+          <label for="firstName" class="col-4 col-form-label">First Name:</label> 
           <div class="col-8">
             <input type="text" name="txtpName" id="txtpName" value="<?= $row["pName"] ?>" class="form-control" />
           </div>
         </div>
         <div class="form-group row">
-          <label for="firstName" class="col-4 col-form-label">產品價格:</label> 
+          <label for="firstName" class="col-4 col-form-label">First Name:</label> 
           <div class="col-8">
             <input type="text" name="txtprice" id="txtprice" value="<?= $row["UnitPrice"] ?>" class="form-control"/>
           </div>

@@ -1,9 +1,9 @@
 <?php
 	$server='localhost';
 	$id='root';
-	$pwd='';
+	$pwd='root';
 	$dbname='shopcart';   
-	$con = mysqli_connect($server , $id , $pwd,$dbname);
+	$con = mysqli_connect($server , $id , $pwd,$dbname,8889);
 	if (!$con){
   		die("Could not connect: " . mysql_error());
   	}
