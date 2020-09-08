@@ -37,7 +37,6 @@ if($buyquantity >= 10) {
 }
 $total=$UnitPrice*$buyquantity;
   
-  
 if (isset($_POST["btnOK"])) {
     
     global $pid;
@@ -49,12 +48,12 @@ if (isset($_POST["btnOK"])) {
     $sqlorder="SELECT `oID`, `uID`, `orderDate`, `storeDate` FROM `order` WHERE `uID`='$uID'";
     $order = mysqli_fetch_assoc(mysqli_query($con, $sqlorder));
     $oID=$order["oID"];
-    global $buyquantity;
+    $quantity = $_POST["quantity"];
     global $total;
-    $sqldetail="INSERT INTO `details`(`oID`, `pID`, `quantity`, ` total`) VALUES ('$oID','$pid','$buyquantity','$total')";
+    $sqldetail="INSERT INTO `details`(`oID`, `pID`, `quantity`, ` total`) VALUES ('$oID','$pid','$quantity','$total')";
     mysqli_query($con, $sqldetail);
 
-    header("location: index.php");//go bake to secret screen
+    header("location: checkbuy.php");//go bake to secret screen
 }
 
 ?>
@@ -129,7 +128,7 @@ if (isset($_POST["btnOK"])) {
           <label for="firstName" class="col-4 col-form-label">購買數量:</label> 
           <div class="col-8">
             <input type="text" name="quantity" id="quantity" class="form-control" autofocus 
-             onchange="this.form.submit()" value ="<?=(isset($_POST['quantity']))?$_POST['quantity']:"1"?>">
+             onchange="this.form.submit()" value ="<?=(isset($_POST['quantity']))?$_POST['quantity']:""?>">
           </div>
         </div>
         <div class="form-group row">
