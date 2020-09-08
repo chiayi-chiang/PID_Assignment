@@ -79,8 +79,8 @@ if (isset($_POST["btnOK"])) {
           <input type="text" name="txtprice" id="txtprice" required placeholder="product price"/>
         </tr>
         <tr>
-          <button type="submit" name="btnOK" id="btnOK"><a>新增</a></button><!--按鈕為btnOK-->
-          <button type="reset" name="btnReset" id="btnReset"><a>重設</a></button> 
+          <button type="submit" name="btnOK" id="btnOK" class="btn-success"><a>新增</a></button><!--按鈕為btnOK-->
+          <button type="reset" name="btnReset" id="btnReset" class="btn-success"><a>重設</a></button> 
           <a href="manager.php">回首頁</a>
         </tr>
       </form>

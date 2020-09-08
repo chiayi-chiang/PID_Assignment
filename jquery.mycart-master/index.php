@@ -26,10 +26,6 @@
   
     }
 
-    // session_start();
-    // $cart =&$_SESSION['cart'];
-    // if(!is_object($cart)) $cart=new wfCart();
-    // $cart->add_$item
 
 ?>
     
@@ -80,95 +76,12 @@
         <br>
         <?= $row["pName"]?> - <strong><?= $row["UnitPrice"]?></strong>
         <br>
-        <button class="btn btn-danger my-cart-btn" name="addtocart" data-id="<?= $row["pID"]?>" data-name="<?= $row["pName"]?>" data-price="<?= $row["UnitPrice"]?>" data-quantity="1" data-image="<?= $row["picture"]?>">Add to Cart</button>
+        <a href="./productedit.php?id=<?= $row["pID"] ?>" class="btn btn-danger my-cart-btn">detail</a>
         <!-- <a href="#" class="btn btn-info">Details</a> -->
       </div>
     <?php } ?>
   </div>
 </form>
-
-   <!-- <script src="js/jquery-2.2.3.min.js"></script>
-  <script type='text/javascript' src="js/bootstrap.min.js"></script>
-  <script type='text/javascript' src="js/jquery.mycart.js"></script>
-  <script type="text/javascript">
-  $(function () {
-
-    var goToCartIcon = function($addTocartBtn){
-      var $cartIcon = $(".my-cart-icon");
-      var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
-      $addTocartBtn.prepend($image);
-      var position = $cartIcon.position();
-      $image.animate({
-        top: position.top,
-        left: position.left
-      }, 500 , "linear", function() {
-        $image.remove();
-      });
-    }
-
-    $('.my-cart-btn').myCart({
-      currencySymbol: '$',
-      classCartIcon: 'my-cart-icon',
-      classCartBadge: 'my-cart-badge',
-      classProductQuantity: 'my-product-quantity',
-      classProductRemove: 'my-product-remove',
-      classCheckoutCart: 'my-cart-checkout',
-      affixCartIcon: true,
-      showCheckoutModal: true,
-      numberOfDecimals: 2,
-      cartItems: [ ],
-      
-      clickOnAddToCart: function($addTocart){
-        goToCartIcon($addTocart);
-      },
-      afterAddOnCart: function(products, totalPrice, totalQuantity) {
-        console.log("afterAddOnCart", products, totalPrice, totalQuantity);
-      },
-      clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
-        console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
-      },
-      checkoutCart: function(products, totalPrice, totalQuantity) {
-        var checkoutString = "Total Price: " + totalPrice + "\nTotal Quantity: " + totalQuantity;
-        checkoutString =checkoutString+ "\n\n id \t name \t price \t quantity \t image path";
-        let myObj = [];
-        $.each(products, function(){
-        //   $.each(myArray, function (i, value) {
-            myObj.push({id: this.id, name: this.name, price: this.price, quantity: this.quantity, image: this.image});
-        // });  
-            
-          // checkoutString += ("\n " + this.id + " \t " + this.name + " \t "  + this.price + " \t " + this.quantity + " \t " + this.image);
-        });
-        for($i=0;$i<)
-        console.log(myObj[1]);
-        $.ajax({
-          type: 'POST',
-          url: 'detail.php',
-          data: {myObj},
-          success: function(e){
-            alert(e);
-          },
-          error: function(){
-            alert('error');
-          }
-        
-        }); 
-        
-        
-        
-          
-          // console.log("checking out", products, totalPrice, totalQuantity);
-        },
-      
-      // getDiscountPrice: function(products, totalPrice, totalQuantity) {
-      //   console.log("calculating discount", products, totalPrice, totalQuantity);
-      //   return totalPrice * 0.5;
-      // }
-    });
-
-    
-  });
-  </script>  -->
-
 </body>
 
 </html>

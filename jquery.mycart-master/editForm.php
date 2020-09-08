@@ -87,26 +87,26 @@ if (isset($_POST["btnOK"])) {
     <h2>產品修改</h2>
       <form class="singup-form" id="form2" name="form2" method="post" >
         <div class="form-group row">
-          <label for="firstName" class="col-4 col-form-label">First Name:</label> 
+          <label for="firstName" class="col-4 col-form-label">產品圖檔:</label> 
           <div class="col-8">
             <input type="text" name="txtpicture" id="txtpicture" value="<?= $row["picture"] ?>" class="form-control" />
           </div>
         </div>
         <div class="form-group row">
-          <label for="firstName" class="col-4 col-form-label">First Name:</label> 
+          <label for="firstName" class="col-4 col-form-label">產品名稱:</label> 
           <div class="col-8">
             <input type="text" name="txtpName" id="txtpName" value="<?= $row["pName"] ?>" class="form-control" />
           </div>
         </div>
         <div class="form-group row">
-          <label for="firstName" class="col-4 col-form-label">First Name:</label> 
+          <label for="firstName" class="col-4 col-form-label">產品價格:</label> 
           <div class="col-8">
             <input type="text" name="txtprice" id="txtprice" value="<?= $row["UnitPrice"] ?>" class="form-control"/>
           </div>
         </div>
         <tr>
-          <button type="submit" name="btnOK" id="btnOK">修改</button><!--按鈕為btnOK-->
-          <button type="reset" name="btnReset" id="btnReset">重設</button> 
+          <button type="submit" name="btnOK" id="btnOK" class="btn-success">修改</button><!--按鈕為btnOK-->
+          <button type="reset" name="btnReset" id="btnReset" class="btn-success">重設</button> 
           <a href="manager.php">回首頁</a>
         </tr>
       </form>

@@ -78,7 +78,7 @@ if(isset($_POST["uid"])){
                       <td><?= $row["uName"] ?></td>
                       <td><?= $row["uPhone"] ?></td>
                       <td><input type="text" name="<?=$row['uID']?>" id="name<?=$row['uID']?>" value="<?= $row["canuse"] ?>" class="form-control" /></td>
-                      <td><button onClick="reply_click()" type="submit" name="<?=$row['uID']?>" id="<?=$row['uID']?>">修改</button></td>
+                      <td><button onClick="reply_click()" type="submit" name="<?=$row['uID']?>" id="<?=$row['uID']?>" class="btn-danger">修改</button></td>
                   </tr>
                   <?php } ?>
                 </div>  
