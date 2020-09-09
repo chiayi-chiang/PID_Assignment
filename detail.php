@@ -1,32 +1,24 @@
 <?php 
-require("database.php");
 
-session_start();
-$sUserNumber=$_SESSION["txtUserNumber"];//get now member's uuserNumber
-//echo $sUserNumber;
-//to sql get now member total
-$member = "select *
-FROM member 
-where unumber = '$sUserNumber'";
-$IDrow = mysqli_fetch_assoc(mysqli_query($con, $member));   
-$uID=$IDrow["uID"];
+$pid = $_GET["id"];
 
 
 //將sql資料顯示在畫面上
-
+require("database.php");
 $sqldetail =
-"select o.uID,`pName`,`orderDate`,`storeDate`,`quantity`,(quantity*p.UnitPrice) as total
-FROM `member` m,`order` o,`product` p,`details` d 
-where m.uID=o.uID 
-and o.oID = d.oID 
-and p.pID = d.pID 
-AND o.uID='1'
+"SELECT o.uID,`unumber`,`uName`,`uPhone`,`orderDate`,`storeDate`,`quantity`,`total`,o.pID
+FROM `order` o,member m 
+where o.uID=m.uID and o.pID='$pid'
+ORDER By `orderDate` DESC 
 ";
 
 $detail=mysqli_query($con, $sqldetail);
 
-
-
+$sqlproduct=
+"select * 
+from product
+where `pID`='$pid'";
+$rowname=mysqli_fetch_assoc(mysqli_query($con, $sqlproduct));
 
 
 
@@ -67,7 +59,8 @@ $detail=mysqli_query($con, $sqldetail);
                 <table class="table table-bordered" >
                 <thead>
                     <tr>
-                        <th>產品名稱</th>
+                        <th>購買人</th>
+                        <th>手機</th>
                         <th>訂單日</th>
                         <th>結單日</th>
                         <th>購買數量</th>
@@ -77,7 +70,8 @@ $detail=mysqli_query($con, $sqldetail);
                 <tbody>
                     <?php while ($row=mysqli_fetch_assoc($detail)) { ?> 
                     <tr>
-                        <td><?= $row["pName"] ?></td>
+                        <td><?= $row["uName"] ?></td>
+                        <td><?= $row["uPhone"] ?></td>
                         <td><?= $row["orderDate"] ?></td>
                         <td><?= $row["storeDate"] ?></td>
                         <td><?= $row["quantity"] ?></td>

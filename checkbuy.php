@@ -1,23 +1,30 @@
 <?php 
+require("database.php");
 
-$pid = $_GET["id"];
+session_start();
+$sUserNumber=$_SESSION["txtUserNumber"];//get now member's uuserNumber
+//echo $sUserNumber;
+//to sql get now member total
+$member = "select *
+FROM member 
+where unumber = '$sUserNumber'";
+$IDrow = mysqli_fetch_assoc(mysqli_query($con, $member));   
+$uID=$IDrow["uID"];
 
 
 //將sql資料顯示在畫面上
-require("database.php");
+
 $sqldetail =
-"select p.pID,`pName`,o.uID,`uName`,`uPhone`,`orderDate`,`storeDate`,`quantity`,(quantity*p.UnitPrice) as total 
-FROM `member` m,`order` o,`product` p,`details` d 
-where m.uID=o.uID and o.oID = d.oID and p.pID = d.pID AND p.pID='$pid'
+"SELECT o.uID,`pName`,`orderDate`,`storeDate`,`quantity`,`UnitPrice`,`total`
+FROM `order` o,product p
+where o.pID=p.pID and o.uID='$uID'
+ORDER By `orderDate` DESC
 ";
 
 $detail=mysqli_query($con, $sqldetail);
 
-$sqlproduct=
-"select * 
-from product
-where `pID`='$pid'";
-$rowname=mysqli_fetch_assoc(mysqli_query($con, $sqlproduct));
+
+
 
 
 
@@ -54,26 +61,26 @@ $rowname=mysqli_fetch_assoc(mysqli_query($con, $sqlproduct));
     <form class="member-form" method="post" action="index.php">
         <div class="container">
         <h2 class="float-left"><?= $rowname["pName"]."交易明細"?></h2>
-        <a href="manager.php" class="btn btn-outline-info btn-md float-right">回首頁</a>
+        <a href="index.php" class="btn btn-outline-info btn-md float-right">回首頁</a>
                 <table class="table table-bordered" >
                 <thead>
                     <tr>
-                        <th>購買人</th>
-                        <th>手機</th>
+                        <th>產品名稱</th>
                         <th>訂單日</th>
                         <th>結單日</th>
                         <th>購買數量</th>
+                        <th>單價</th>
                         <th>總額</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($row=mysqli_fetch_assoc($detail)) { ?> 
                     <tr>
-                        <td><?= $row["uName"] ?></td>
-                        <td><?= $row["uPhone"] ?></td>
+                        <td><?= $row["pName"] ?></td>
                         <td><?= $row["orderDate"] ?></td>
                         <td><?= $row["storeDate"] ?></td>
                         <td><?= $row["quantity"] ?></td>
+                        <td><?= $row["UnitPrice"] ?></td>
                         <td><?= $row["total"] ?></td>
                     </tr>
                     <?php } ?>

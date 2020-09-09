@@ -52,16 +52,15 @@
 <form class="singup-form" id="form2" name="form2" method="post" >
   <div class="page-header">
     <h1><td align="center" bgcolor="#CCCCCC" ><?="Welcome!". $sUserName?> </td><!--登入成功後會出現使用者帳號-->
-      <button>
+      <button >
         <?php if ($sUserName == "Guest"){?>
           <td align="center" valign="baseline"><a href="login.php">登入</a>｜<a href="singup.php">註冊</a></td><!--yes-->
         <?php }else{?>
           <td align="center" valign="baseline"><a href="index.php?logout=1">登出</a>|<a href="decidemana.php">管理員</a></td><!--no-->
         <?php }?>
       </button>
-      
-      
     </h1>
+    <h2><a href="checkbuy.php"> 我的購物明細</a></h2>
   </div>
 
   <div class="row">
@@ -71,7 +70,7 @@
         <br>
         <?= $row["pName"]?> - <strong><?= $row["UnitPrice"]?></strong>
         <br>
-        <a href="./productedit.php?id=<?= $row["pID"] ?>" class="btn btn-danger my-cart-btn">detail</a>
+        <a href="productedit.php?id=<?= $row["pID"] ?>" class="btn btn-danger my-cart-btn">detail</a>
         <!-- <a href="#" class="btn btn-info">Details</a> -->
       </div>
     <?php } ?>

@@ -24,37 +24,36 @@ $uID=$IDrow["uID"];
 
 $sqlpId = 
   "select * from product where pId = $pid";
-  $row = mysqli_fetch_assoc(mysqli_query($con, $sqlpId));    
+  $prow = mysqli_fetch_assoc(mysqli_query($con, $sqlpId));    
 
+//取消費者輸入的數量和sql的產品單價相乘
+$UnitPrice=$prow["UnitPrice"];//from sql to get UnitPrice
 
-$UnitPrice=$row["UnitPrice"];
-$buytotal=$sqltotal["total"];
-echo $buytotal;
-$buyquantity = $_POST["quantity"];
-if($buyquantity >= 10) {
-    $_POST["quantity"]=10; 
-    $buyquantity = $_POST["quantity"];
+$quantity= $_POST['quantity'];//user input quantity
+//如果使用者輸入的值大於10以10計算
+if($quantity >= 10) {
+  $_POST["quantity"]=10; 
+  $quantity = $_POST["quantity"];
 }
-$total=$UnitPrice*$buyquantity;
-  
-if (isset($_POST["btnOK"])) {
-    
-    global $pid;
-    global $uID;
-    $orderDate=date('Y-m-d H:i:s',mktime (date(H)+8, date(i), date(s), date(m), date(d), date(Y)));
-    $storeDate=date('Y-m-d H:i:s',mktime (date(H)+8, date(i), date(s), date(m), date(d)+8, date(Y)));
-    $sqlorder="INSERT INTO `order`(`uID`, `orderDate`, `storeDate`) VALUES ('$uID','$orderDate','$storeDate')";
-    mysqli_query($con, $sqlorder);
-    $sqlorder="SELECT `oID`, `uID`, `orderDate`, `storeDate` FROM `order` WHERE `uID`='$uID'";
-    $order = mysqli_fetch_assoc(mysqli_query($con, $sqlorder));
-    $oID=$order["oID"];
-    $quantity = $_POST["quantity"];
-    global $total;
-    $sqldetail="INSERT INTO `details`(`oID`, `pID`, `quantity`, ` total`) VALUES ('$oID','$pid','$quantity','$total')";
-    mysqli_query($con, $sqldetail);
+$total=$UnitPrice*$quantity;
 
-    header("location: checkbuy.php");//go bake to secret screen
+
+if(isset($_POST["btnOK"])){
+  global $pid;
+  global $uID;
+  global $total;
+  global $quantity;
+  echo $quantity;
+  $quantity= $_POST['quantity'];
+  $orderDate=date('Y-m-d H:i:s',mktime (date(H)+8, date(i), date(s), date(m), date(d), date(Y)));
+  $storeDate=date('Y-m-d H:i:s',mktime (date(H)+8, date(i), date(s), date(m), date(d)+7, date(Y)));
+  $sqlorder="INSERT INTO `order`(`uID`, `orderDate`, `storeDate`,`pID`, `quantity`, `total`) 
+  VALUES ('$uID','$orderDate','$storeDate','$pid','$quantity','$total')";
+  mysqli_query($con, $sqlorder);
+  echo "<script type='text/javascript'>alert('已訂購，可至購物明細中查詢');location.href='index.php';</script>";
 }
+ 
+
 
 ?>
 
@@ -110,18 +109,18 @@ if (isset($_POST["btnOK"])) {
 <body>
     <div class="addproduct-page" >
     <div class="form">
-    <h2>產品修改</h2>
+    <h2><?= "購入".$prow["pName"] ?></h2>
       <form class="singup-form" id="form2" name="form2" method="post">
         <div class="form-group row">
           <label for="firstName" class="col-4 col-form-label">產品名稱:</label> 
           <div class="col-8">
-            <input type="text" name="txtpName" id="txtpName" disabled="disabled" value="<?= $row["pName"] ?>" class="form-control" />
+            <input type="text" name="txtpName" id="txtpName" disabled="disabled" value="<?= $prow["pName"] ?>" class="form-control" />
           </div>
         </div>
         <div class="form-group row">
           <label for="firstName" class="col-4 col-form-label">產品單價:</label> 
           <div class="col-8">
-            <input type="text" name="txtprice" id="txtprice" disabled="disabled" value="<?= $row["UnitPrice"] ?>" class="form-control"/>
+            <input type="text" name="txtprice" id="txtprice" disabled="disabled" value="<?= $prow["UnitPrice"] ?>" class="form-control"/>
           </div>
         </div>
         <div class="form-group row">
